@@ -9,8 +9,10 @@ export default function Home() {
     <div>
       <main>
 
+
+
         <HomeComponent />
-        
+
 
 
       </main>
