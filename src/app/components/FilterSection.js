@@ -1,8 +1,9 @@
-import { Button, FormControl, IconButton, InputAdornment, InputLabel, Menu, MenuItem, Select, Stack, TextField } from '@mui/material'
+import { Button, FormControl, IconButton, InputAdornment, InputLabel, Menu, MenuItem, NativeSelect, Select, Stack, TextField } from '@mui/material'
 import Image from 'next/image';
 import React, { useState } from 'react'
 import SearchIcon from '@mui/icons-material/Search';
 import MenuIcon from '@mui/icons-material/Menu';
+import WhereToVoteOutlinedIcon from '@mui/icons-material/WhereToVoteOutlined';
 
 
 const FilterSection = () => {
@@ -23,8 +24,10 @@ const FilterSection = () => {
     };
     return (
         <Stack direction={{ md: 'row' }} justifyContent={{ md: 'space-between' }} alignItems={{ md: 'center' }} sx={{ padding: { xs: '10px', md: '10px' }}}>
+            <Stack direction="row" gap={2}>
+
             <Image src={"/images/car-logo-black-text.svg"} alt="sample" height={100} width={100} />
-            <Stack
+            {/* <Stack
                 direction={{ xs: 'column', md: 'row' }}
                 spacing={2}
                 sx={{ alignItems: 'center' }}
@@ -71,7 +74,30 @@ const FilterSection = () => {
                         ),
                     }}
                 />
-            </Stack>
+            </Stack> */}
+             <Stack   display={'flex'} flexDirection={'row'} gap={1} alignItems={'center'}>
+            <WhereToVoteOutlinedIcon />
+
+            <FormControl fullWidth>
+  <InputLabel variant="standard" htmlFor="uncontrolled-native">
+  Delivery Address
+  </InputLabel>
+  <NativeSelect
+    defaultValue={30}
+    inputProps={{
+      name: 'age',
+      id: 'uncontrolled-native',
+    }}
+  >
+    <option value={10}>Jeddah</option>
+    <option value={20}>Jeddah</option>
+    <option value={30}>Jeddah</option>
+  </NativeSelect>
+</FormControl>
+
+</Stack>
+</Stack>
+
 
 
 

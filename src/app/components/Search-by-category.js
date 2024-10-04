@@ -104,12 +104,12 @@ const categories = [
 
 const SearchByCategory = () => {
   return (
-    <Stack className="leading-main">
-      <Stack>
-        <Typography variant="h6" textAlign={'center'} sx={{ fontWeight: 'bold' }}>Leading Car Brands You Know and Trust</Typography>
-      </Stack>
-      <Stack>
+   
         <Container maxWidth="lg" sx={{ mt: 4 }}>
+        <Stack display={'flex'} flexDirection={'row'} justifyContent={'space-between'} alignItem={'center'}>
+        <Typography variant="h6" textAlign={'center'} sx={{ fontWeight: 'bold' }} gutterBottom>Shop By Category</Typography>
+        <Typography  variant="subtitle2" color="#1781F8" gutterBottom>View All</Typography>
+        </Stack>
           <Grid container spacing={2}>
             {categories.map((img, index) => (
               <Grid item xs={12} sm={6} md={4} lg={3} xl={3} key={index}>
@@ -126,9 +126,7 @@ const SearchByCategory = () => {
             ))}
           </Grid>
         </Container>
-      </Stack>
 
-    </Stack>
   )
 }
 

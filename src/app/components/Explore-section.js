@@ -1,82 +1,119 @@
 "use client"; 
 
-import { Box, Container, Grid, Stack, Typography } from '@mui/material';
+import { Box, Button, Container, Grid, Stack, Typography } from '@mui/material';
 import Image from 'next/image';
-import React from 'react';
+import React, { useState } from 'react';
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
 const explore = [
   {
     id: 1,
-    title: "Overview of Car Engines by Cylinder Configuration",
-    desc: "Car engines are the heart of any vehicle, powering every journey, from daily commutes to cross-country road trips. These complex machines have evolved dramatically since the inception of the automobile, becoming more efficient, powerful, and diverse. Understanding the different types of car engines is not just a matter of technical curiosity but a window into how they shape vehicle design, performance, and the driving experience.",
-    path: "/images/cylinder-1.svg",
-    alt: "sample"
+    title: "Top 5 Essential Car Maintenance Tips",
+    desc: "Keep your vehicle running smoothly with these must-know maintenance tips. Simple steps can save you from costly repairs down the road.",
+    path: "/images/essential-car-maintanance.svg",
+    alt: "sample",
+    date:'20.02.2024'
   },
   {
     id: 2,
-    title: "Unveiling the Secrets of Your Car's Exhaust System: Discover How It Really Works",
-    desc: "The exhaust system of a car is a critical component in its overall performance and environmental impact. Designed to guide exhaust gases away from a controlled combustion inside the engine, it plays a crucial role in ensuring the vehicle runs smoothly and efficiently. This system not only helps in reducing noise but also minimizes the impact of emissions on the environment. Understanding the exhaust system is key for anyone interested in the performance and maintenance of their vehicle, whether they are general drivers or car enthusiasts.",
-    path: "/images/cylinder-2.svg",
-    alt: "sample"
+    title: "How to Choose the Right Engine Oil for Your Car",
+    desc: "The right engine oil is crucial for your car’s performance and longevity. Discover how to pick the perfect oil for your vehicle’s needs.",
+    path: "/images/choose-right-engine.svg",
+    alt: "sample",
+    date:'20.02.2024'
+
   },
   {
     id: 3,
-    title: "Investment or Loss: a Guide to Buying a Car in India",
-    desc: "The Indian automotive market, diverse and rapidly evolving, presents unique opportunities for individuals considering buying a new car not just as a mode of transport, but as an investment. This article delves into the nuances of investing in cars in India, offering insights for potential car owners on navigating the complexities of this vibrant market.",
-    path: "/images/yellow-car-buy.svg",
-    alt: "sample"
+    title: "The Benefits of Regular Brake System Checks",
+    desc: "Regular brake inspections are key to your safety on the road. Learn why you should never skip this critical maintenance task.",
+    path: "/images/regular-break-check-sysm.svg",
+    alt: "sample",
+    date:'20.02.2024'
+
   },
+  {
+    id:4,
+    title:"Upgrade Your Ride: Best Car Accessories of the Year",
+    desc:"Transform your driving experience with the latest car accessories. From tech gadgets to comfort enhancers, these picks are a must-have.",
+    path:"/images/best-car-accessories.svg",
+    alt: "sample",
+    date:'20.02.2024'
+  },
+  {
+    id:5,
+    title:"Understanding Your Car’s Cooling System",
+    desc:"Your car’s cooling system is vital for preventing overheating. Learn how it works and why maintaining it is essential for engine health.",
+    path:"/images/car-cooling.svg",
+    alt: "sample",
+    date:'20.02.2024'
+  },
+  {
+    id:6,
+    title:"Why Quality Bearings Matter for Your Vehicle",
+    desc:"Bearings play a critical role in reducing friction and wear. Find out how quality bearings can extend the life of your car’s components.",
+    path:"/images/quality-bearings.svg",
+    alt: "sample",
+    date:'20.02.2024'
+  }
 ];
 
-const ExploreSection = () => {
-  return (
-    
-    <Container maxWidth="lg"  sx={{ padding: 2 , mt:4}} marginTop={5} marginBottom={5}>
-      <Stack spacing={2} sx={{ mb: 4 }}  textAlign={'center'}>
-        <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-          Stay Informed with Expert Insights
-        </Typography>
-        <Typography variant="h7">
-          Explore our latest articles and reviews for in-depth knowledge on auto parts, maintenance tips, and product comparisons. Stay ahead with expert advice and make informed decisions for your vehicle.
-        </Typography>
-      </Stack>
 
-      <Container maxWidth="lg">
-        <Grid container spacing={2}>
-          {explore.map((img, index) => (
-            <Grid item xs={12} sm={6} md={4} key={img.id}>
-              <Box
-                sx={{
-                  borderRadius: 1,
-                  overflow: 'hidden',
-                  boxShadow: 3,
-                  border: '1px solid transparent',
-                  padding: "10px",
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                }}
-              >
-                <Image
-                  src={img.path}
-                  alt={img.alt}
-                  width={500}
-                  height={300}
-                  layout="responsive"
-                  objectFit="cover"
-                />
-                <Typography sx={{ fontWeight: "bold", color: '#010212', mt: 2 }}>
-                  {img.title}
-                </Typography>
-                <Typography sx={{ mt: 1 }}>
-                  {img.desc}
-                </Typography>
-              </Box>
-            </Grid>
-          ))}
-        </Grid>
-      </Container>
-    </Container>
+const ExploreSection = () => {
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+    const itemsPerView = 3;
+
+    const handleNext = () => {
+        if (currentIndex < explore.length - itemsPerView) {
+            setCurrentIndex(currentIndex + 1);
+        }
+    };
+
+    const handlePrev = () => {
+        if (currentIndex > 0) {
+            setCurrentIndex(currentIndex - 1);
+        }
+    };
+
+  return (
+    <Container maxWidth="lg" sx={{ mt: 4 }}>
+    <Stack spacing={2}>
+        <Stack direction="row" justifyContent="space-between" alignItems="center">
+            <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+            Blogs & Articles
+            </Typography>
+            <Typography variant="subtitle2" color="#1781F8">View All</Typography>
+        </Stack>
+        <Stack direction="row" alignItems="center" spacing={1}>
+            <Button onClick={handlePrev} disabled={currentIndex === 0} startIcon={<KeyboardArrowLeftIcon  fontSize='40px'/>}>
+               
+            </Button>
+            <Stack direction="row" spacing={2} overflow="hidden">
+                <Stack direction="row" spacing={2} sx={{ transform: `translateX(-${currentIndex * 100 / itemsPerView}%)`, transition: 'transform 0.3s ease-in-out' }}>
+                    {explore.map((each) => (
+                        <Stack spacing={2}width={250} key={each.id}>
+                            <Image src={each.path} alt={each.path} height={200} width={250} />
+                           
+                               
+                                    <Typography variant='subtitle2' fontWeight='600' color="#010212" fontSize='14'>{each.title}</Typography>
+                                    <Typography variant='subtitle2' fontWeight='500'  color="#475467" fontSize='12'>{each.desc}</Typography>
+                                    <Typography color="#475467" fontSize='10'>{each.date}</Typography>
+
+                             
+                         
+                        </Stack>
+                    ))}
+                </Stack>
+            </Stack>
+            <Button onClick={handleNext} disabled={currentIndex >= explore.length - itemsPerView} endIcon={<KeyboardArrowRightIcon  fontSize='40px'/>}>
+              
+            </Button>
+        </Stack>
+    </Stack>
+</Container>
+   
   );
 };
 
